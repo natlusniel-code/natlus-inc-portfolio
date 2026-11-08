@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# The owner's admin panel is intentionally unlisted (spec section 4).
+Disallow: /natlus
+Disallow: /natlus/
