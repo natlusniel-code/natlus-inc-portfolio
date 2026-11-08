@@ -58,7 +58,7 @@ Every variable is listed in `.env.example`. Only one is required to run:
 | Variable | Required | Purpose |
 |----------|----------|---------|
 | `DATABASE_URL` | **Yes** | Postgres connection string. Use the **pooled** URL on serverless. |
-| `CONTACT_TO_EMAIL` | No | Where contact-form notifications are sent. |
+| `CONTACT_TO` | No | Where contact-form notifications are sent. |
 | `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` / `SMTP_FROM` | No | SMTP credentials. Without them the contact form still saves every message to the admin inbox — it just does not email. |
 
 **The contact form is honest about this.** If SMTP is not configured, the form
@@ -72,10 +72,22 @@ inbox) and never claims an email was sent.
 1. **Import the repository** into Vercel. No code changes are needed — `vercel.json`
    already routes `/api/*` to the serverless function and everything else to the
    static build.
+
+   > **Do not add a `runtime` field to the function config.** `api/index.ts`
+   > deliberately omits it so Vercel auto-detects the Node.js runtime. Versioned
+   > strings such as `"nodejs20.x"` are rejected by current Vercel CLI versions
+   > with `unsupported "runtime" value in config`. The handler supports both the
+   > Node `(req, res)` and the Web `(request) -> Response` calling conventions, so
+   > it works whichever runtime Vercel picks.
+   >
+   > The build runs **once**: `vercel.json` sets `buildCommand` to `npm run build`
+   > (typecheck + `vite build`). There is no separate `vercel-build` script, which
+   > would otherwise make Vercel build the project a second time.
+
 2. **Set the environment variables** in *Settings → Environment Variables* for
    **Production and Preview**:
    - `DATABASE_URL` (required)
-   - `CONTACT_TO_EMAIL`, `SMTP_*` (optional, for contact-form email)
+   - `CONTACT_TO`, `SMTP_*` (optional, for contact-form email)
 3. **Create the schema and seed the content** against the production database,
    from your machine:
 

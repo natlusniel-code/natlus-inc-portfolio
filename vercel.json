@@ -1,12 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm run vercel-build",
-  "outputDirectory": "dist",
   "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index" },
     { "source": "/natlus", "destination": "/natlus/index.html" },
     { "source": "/natlus/(.*)", "destination": "/natlus/index.html" },
-    { "source": "/((?!api/|natlus).*)", "destination": "/index.html" }
+    { "source": "/((?!api(?:/|$)|natlus(?:/|$)).*)", "destination": "/index.html" }
   ]
 }

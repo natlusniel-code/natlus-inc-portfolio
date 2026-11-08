@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Natlus Inc. — Software Developer Portfolio Website with a public portfolio site and a /natlus admin panel.",
+  "description": "Natlus Inc. \u2014 Software Developer Portfolio Website with a public portfolio site and a /natlus admin panel.",
   "scripts": {
     "dev": "vite",
     "dev:api": "node --experimental-strip-types dev-server.mjs",
@@ -12,8 +12,10 @@
     "typecheck": "tsc --noEmit",
     "db:migrate": "node db/migrate.mjs",
     "db:seed": "node db/seed.mjs",
-    "verify:whatsapp": "node scripts/verify-whatsapp.mjs",
-    "vercel-build": "vite build"
+    "verify:whatsapp": "node scripts/verify-whatsapp.mjs"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "dependencies": {
     "pg": "^8.12.0",
