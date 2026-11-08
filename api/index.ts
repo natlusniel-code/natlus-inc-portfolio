@@ -18,10 +18,29 @@ export const config = {
   maxDuration: 60,
 };
 
+/**
+ * Restore the ORIGINAL request path.
+ *
+ * vercel.json rewrites every `/api/*` request to the single function entry
+ * `/api/index?__path=:path*` (see the comment there for why). A rewrite
+ * changes the path the function sees, so the real path travels in the
+ * `__path` query parameter and is restored here — ONCE, before routing —
+ * so every router downstream sees the path the client actually requested.
+ */
+function normalizeUrl(rawUrl: string): string {
+  const parsed = new URL(rawUrl);
+  const viaQuery = parsed.searchParams.get("__path");
+  if (viaQuery !== null) {
+    const clean = viaQuery.replace(/^\/+/, "");
+    parsed.pathname = clean ? `/api/${clean}` : "/api";
+    parsed.searchParams.delete("__path");
+  }
+  return parsed.toString();
+}
+
 /** Route an already-normalised Web `Request` to the right handler. */
 async function route(req: Request): Promise<Response> {
-  const url = new URL(req.url);
-  const p = url.pathname;
+  const p = new URL(req.url).pathname;
 
   if (p === "/api/health") return await infoRouter(req);
   if (p === "/api/content/bundle") return await handleBundle();
@@ -67,7 +86,10 @@ async function readNodeBody(req: any): Promise<BodyInit | undefined> {
 }
 
 async function toWebRequest(req: any): Promise<Request> {
-  if (isWebRequest(req)) return req;
+  if (isWebRequest(req)) {
+    const normalized = normalizeUrl(req.url);
+    return normalized === req.url ? req : new Request(normalized, req);
+  }
 
   const headers = new Headers();
   for (const [key, value] of Object.entries(req.headers || {})) {
@@ -79,7 +101,7 @@ async function toWebRequest(req: any): Promise<Request> {
   const proto = headers.get("x-forwarded-proto") || "https";
   const host = headers.get("x-forwarded-host") || headers.get("host") || "localhost";
   const rawUrl: string = req.url || "/";
-  const url = rawUrl.startsWith("http") ? rawUrl : `${proto}://${host}${rawUrl}`;
+  const url = normalizeUrl(rawUrl.startsWith("http") ? rawUrl : `${proto}://${host}${rawUrl}`);
 
   const method = String(req.method || "GET").toUpperCase();
   const body = await readNodeBody(req);
