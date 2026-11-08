@@ -1,5 +1,5 @@
-import { errorResponse, json } from "../_core/http.ts";
-import { getImage, storeImage } from "../_core/images.ts";
+import { errorResponse, json } from "../_core/http.js";
+import { getImage, storeImage } from "../_core/images.js";
 
 /** POST /api/upload { data: "data:image/png;base64,..." } -> { url }
  *  GET  /api/images/:id -> image bytes (long-cached) */

@@ -3,10 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Natlus Inc. \u2014 Software Developer Portfolio Website with a public portfolio site and a /natlus admin panel.",
+  "description": "Natlus Inc. — Software Developer Portfolio Website with a public portfolio site and a /natlus admin panel.",
   "scripts": {
     "dev": "vite",
-    "dev:api": "node --experimental-strip-types dev-server.mjs",
+    "dev:api": "node --experimental-strip-types --import ./scripts/ts-resolve.mjs dev-server.mjs",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",

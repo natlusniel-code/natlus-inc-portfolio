@@ -1,5 +1,5 @@
-import { q } from "../_core/db.ts";
-import { errorResponse, json } from "../_core/http.ts";
+import { q } from "../_core/db.js";
+import { errorResponse, json } from "../_core/http.js";
 
 export async function infoRouter(req: Request): Promise<Response> {
   const url = new URL(req.url);

@@ -1,7 +1,7 @@
-import { q } from "./db.ts";
-import { HttpError } from "./errors.ts";
-import { validateSingleton, validateItem } from "./schemas.ts";
-import type { ContentKey, ContentListKey, SingletonValue, ItemData } from "../../shared/types.ts";
+import { q } from "./db.js";
+import { HttpError } from "./errors.js";
+import { validateSingleton, validateItem } from "./schemas.js";
+import type { ContentKey, ContentListKey, SingletonValue, ItemData } from "../../shared/types.js";
 
 // ---------------------------------------------------------------
 // Singleton content: generic `content(key, value)` table.

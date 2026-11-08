@@ -1,4 +1,4 @@
-import { HttpError } from "./errors.ts";
+import { HttpError } from "./errors.js";
 
 export function str(v: unknown, max = 10000): string {
   return typeof v === "string" ? v.trim().slice(0, max) : "";

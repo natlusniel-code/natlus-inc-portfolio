@@ -1,4 +1,4 @@
-import { getSingleton, listItems } from "./content.ts";
+import { getSingleton, listItems } from "./content.js";
 import type {
   Benefit,
   CeoProfile,
@@ -18,7 +18,7 @@ import type {
   SocialLink,
   Testimonial,
   WhatsAppTemplates,
-} from "../../shared/types.ts";
+} from "../../shared/types.js";
 
 export async function getPublicBundle(): Promise<ContentBundle> {
   const [

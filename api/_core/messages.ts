@@ -1,7 +1,7 @@
-import { q } from "./db.ts";
-import { HttpError } from "./errors.ts";
-import { str } from "./validate.ts";
-import type { ContactMessage } from "../../shared/types.ts";
+import { q } from "./db.js";
+import { HttpError } from "./errors.js";
+import { str } from "./validate.js";
+import type { ContactMessage } from "../../shared/types.js";
 
 export async function listMessages(): Promise<ContactMessage[]> {
   const rows = await q<ContactMessage & { created_at: string }>(

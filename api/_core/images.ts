@@ -1,5 +1,5 @@
-import { q } from "./db.ts";
-import { HttpError } from "./errors.ts";
+import { q } from "./db.js";
+import { HttpError } from "./errors.js";
 
 const MAX_BYTES = 2_500_000; // ~2.4 MB
 const ALLOWED = /^data:image\/(png|jpe?g|webp|gif);base64,/i;

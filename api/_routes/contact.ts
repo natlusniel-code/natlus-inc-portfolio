@@ -1,5 +1,5 @@
-import { errorResponse, json } from "../_core/http.ts";
-import { saveMessage } from "../_core/messages.ts";
+import { errorResponse, json } from "../_core/http.js";
+import { saveMessage } from "../_core/messages.js";
 
 /**
  * Public contact form endpoint.
@@ -39,7 +39,7 @@ async function maybeMail(v: Record<string, unknown>): Promise<boolean> {
       "",
       String(v.description ?? ""),
     ].join("\n");
-    const { sendSmtpMail } = await import("./smtp.ts");
+    const { sendSmtpMail } = await import("./smtp.js");
     await sendSmtpMail({ host: SMTP_HOST, port: Number(SMTP_PORT || 587), user: SMTP_USER, pass: SMTP_PASS, from, to, subject, text });
     return true;
   } catch (e) {

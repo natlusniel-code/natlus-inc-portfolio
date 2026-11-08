@@ -1,5 +1,5 @@
-import { getPublicBundle } from "./bundle.ts";
-import { HttpError } from "./errors.ts";
+import { getPublicBundle } from "./bundle.js";
+import { HttpError } from "./errors.js";
 
 const publicCache = "public, max-age=45, stale-while-revalidate=300";
 

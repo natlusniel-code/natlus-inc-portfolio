@@ -1,9 +1,9 @@
-import { handleBundle, json, errorResponse } from "./_core/http.ts";
-import { contentRouter } from "./_routes/content.ts";
-import { infoRouter } from "./_routes/info.ts";
-import { messagesRouter } from "./_routes/messages.ts";
-import { contactRouter } from "./_routes/contact.ts";
-import { imagesRouter } from "./_routes/images.ts";
+import { handleBundle, json, errorResponse } from "./_core/http.js";
+import { contentRouter } from "./_routes/content.js";
+import { infoRouter } from "./_routes/info.js";
+import { messagesRouter } from "./_routes/messages.js";
+import { contactRouter } from "./_routes/contact.js";
+import { imagesRouter } from "./_routes/images.js";
 
 // Vercel serverless function entry point (also usable locally with
 // `npx vercel dev`). Static assets are served by Vercel before this

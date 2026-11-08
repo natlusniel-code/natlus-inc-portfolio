@@ -1,6 +1,6 @@
-import { HttpError } from "./errors.ts";
-import { bool, isHexColor, requiredStr, slugify, str, strArr } from "./validate.ts";
-import type { ContentKey, ContentListKey, SingletonValue } from "../../shared/types.ts";
+import { HttpError } from "./errors.js";
+import { bool, isHexColor, requiredStr, slugify, str, strArr } from "./validate.js";
+import type { ContentKey, ContentListKey, SingletonValue } from "../../shared/types.js";
 
 type AnyRecord = Record<string, unknown>;
 

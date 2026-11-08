@@ -1,5 +1,5 @@
-import { errorResponse, json } from "../_core/http.ts";
-import { listMessages, saveMessage, markMessageRead, deleteMessage } from "../_core/messages.ts";
+import { errorResponse, json } from "../_core/http.js";
+import { listMessages, saveMessage, markMessageRead, deleteMessage } from "../_core/messages.js";
 
 export async function messagesRouter(req: Request): Promise<Response> {
   const url = new URL(req.url);

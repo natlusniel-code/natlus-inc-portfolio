@@ -1,7 +1,7 @@
-import { HttpError } from "../_core/errors.ts";
-import { errorResponse, json } from "../_core/http.ts";
-import { getSingleton, listItems, createItem, updateItem, deleteItem, reorderItems, upsertSingleton } from "../_core/content.ts";
-import type { ContentKey, ContentListKey } from "../../shared/types.ts";
+import { HttpError } from "../_core/errors.js";
+import { errorResponse, json } from "../_core/http.js";
+import { getSingleton, listItems, createItem, updateItem, deleteItem, reorderItems, upsertSingleton } from "../_core/content.js";
+import type { ContentKey, ContentListKey } from "../../shared/types.js";
 
 const SINGLETON_KEYS = new Set<ContentKey>([
   "company", "ceo", "hero", "contact", "whatsapp", "footer", "seo", "settings", "pricing", "portfolioCategories",

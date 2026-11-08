@@ -1,5 +1,5 @@
 import pg from "pg";
-import { HttpError } from "./errors.ts";
+import { HttpError } from "./errors.js";
 
 let pool: pg.Pool | null = null;
 

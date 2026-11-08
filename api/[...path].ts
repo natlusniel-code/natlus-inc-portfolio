@@ -8,4 +8,4 @@
 //
 // This replaces the old `{ "source": "/api/(.*)", "destination": "/api/index" }`
 // rewrite, which collapsed every API path to `/api/index` and broke routing.
-export { default, config } from "./index.ts";
+export { default, config } from "./index.js";
